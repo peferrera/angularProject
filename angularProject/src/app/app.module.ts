@@ -18,6 +18,7 @@ import { AuthService } from './service/auth.service';
 import { AppErrorHandler } from './commons/app-error-handler';
 import { AuthGuard } from './service/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RedefinirSenhaComponent } from './redefinir-senha/redefinir-senha.component';
 
 
 export function tokenGetter() {
@@ -32,7 +33,8 @@ export function tokenGetter() {
     EmpresaViewComponent,
     EmpresaAddComponent,
     NavbarComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RedefinirSenhaComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ export function tokenGetter() {
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
       { path: 'empresaAdd', component: EmpresaAddComponent },
+      { path: 'redefinirSenha', component: RedefinirSenhaComponent },
       { path: 'not-found', component: NotFoundComponent },
       { path: '**', component: NotFoundComponent },
     ]),

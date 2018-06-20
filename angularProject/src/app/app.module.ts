@@ -40,7 +40,11 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 30000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

@@ -19,16 +19,14 @@
                 <div class="field ">
                     <label class="label is-small ">Email</label>
                     <div class="control ">
-                        <input formControlName="email" class="input is-hoverable is-info is-shadowless crud-input " type="email " placeholder="email@email.com " value=" ">
-
+                        <input type="email" formControlName="email" class="input is-hoverable is-info is-shadowless crud-input " placeholder="email@email.com " required>
                     </div>
-
                 </div>
 
                 <div class="field ">
                     <label class="label is-small ">Senha</label>
                     <div class="control ">
-                        <input type="password" formControlName="senha" class="input is-hoverable is-info is-shadowless crud-input " placeholder="************** " value=" ">
+                        <input type="password" formControlName="senha" class="input is-hoverable is-info is-shadowless crud-input " placeholder="************** " required>
                     </div>
                 </div>
 
@@ -42,12 +40,12 @@
                 <div class="field ">
                     <div class="control ">
                         <label class=" block ">
-                            <input type="radio" class="is-info is-hoverable "> Criar nova empresa (Admin)
-                        </label>
+              <input type="radio" class="is-info is-hoverable "> Criar nova empresa (Admin)
+            </label>
 
                         <label class="block ">
-                            <input type="radio" class="is-info is-hoverable" name= "question "  checked> Inserir Código existente
-                        </label>
+              <input type="radio" class="is-info is-hoverable" name="question " checked> Inserir Código existente
+            </label>
                     </div>
                 </div>
 
@@ -60,7 +58,7 @@
                 </div>
 
                 <div class="control ">
-                    <button type="submit " class="button is-info is-focused crud-btn ">Enviar</button>
+                    <input type="submit" class="button is-info is-focused crud-btn " value="Cadastrar">
                 </div>
             </form>
 

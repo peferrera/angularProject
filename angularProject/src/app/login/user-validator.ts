@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 
 
-export class AppUserValidator {
+export class UsuarioValidator {
 
     static hasWhiteSpace(control: AbstractControl): ValidationErrors | null {
         const valorDoCampo: string = control.value;

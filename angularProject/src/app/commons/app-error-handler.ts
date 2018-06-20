@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppError } from './app-error';
 import { BadCredentialsError } from './bad-credentials';
 import { AuthService } from './../service/auth.service';
+import { BadInputError } from './bad-input';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,14 @@ export class AppErrorHandler implements ErrorHandler {
 
         if (error instanceof AppError) {
             const appError: AppError = error;
-            toast.error(appError.originalError ? appError.originalError.message : appError.originalError, 'Ocorreu um erro!');
+            toast.error('Erro!', 'Usuário não encontrado!');
+            return;
+        }
+
+        if (error instanceof BadInputError) {
+            const appError: AppError = error;
+            auth.logoutAndRedirect();
+            toast.error('Usuário sem permissão. Deslogando...');
             return;
         }
 

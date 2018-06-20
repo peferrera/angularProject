@@ -1,14 +1,13 @@
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { EmpresaService } from '../service/empresa.service';
 import { AuthService } from '../service/auth.service';
 import { OnInit, Component } from '@angular/core';
 import { LoginDTO } from '../dto/login-dto';
 import { TokenDTO } from '../dto/token-dto';
 import { BadCredentialsError } from '../commons/bad-credentials';
-import { AppUserValidator } from './user-validator';
+import { UsuarioValidator } from './user-validator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -27,14 +26,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'appUser': new FormControl(
+      'email': new FormControl(
         '',
         [
           Validators.minLength(4), Validators.required,
-          AppUserValidator.hasWhiteSpace
+          UsuarioValidator.hasWhiteSpace
         ]
       ),
-      'password': new FormControl('', [Validators.required])
+      'senha': new FormControl('', [Validators.required])
     });
   }
 
@@ -46,20 +45,20 @@ export class LoginComponent implements OnInit {
     },
       (e) => {
         if (e instanceof BadCredentialsError) {
-          this.password.setErrors(e['form']);
+          this.senha.setErrors(e['form']);
         } else {
           throw e;
         }
       });
   }
 
-  get appUser() {
-    return this.form.get('appUser');
+  get usuario() {
+    return this.form.get('usuario');
   }
 
 
-  get password() {
-    return this.form.get('password');
+  get senha() {
+    return this.form.get('senha');
   }
 
 }

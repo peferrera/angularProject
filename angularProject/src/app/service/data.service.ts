@@ -8,7 +8,6 @@ import { BadInputError } from '../commons/bad-input';
 import { BadCredentialsError } from '../commons/bad-credentials';
 import { AppError } from '../commons/app-error';
 import { NotFoundError } from '../commons/not-found-error';
-
 export class DataService {
 
     constructor(
@@ -38,12 +37,21 @@ export class DataService {
 
     protected handleError(error: HttpErrorResponse) {
         if (error.status === 400) {
+            console.error(
+            'Backend returned code 400, ' +
+                'body was: ${error.error}');
             return throwError(new BadInputError(error));
         }
         if (error.status === 401) {
+            console.error(
+                'Backend returned code 401, ' +
+                'body was: ${error.error}');
             return throwError(new BadCredentialsError(error));
         }
         if (error.status === 404) {
+            console.error(
+                'Backend returned code 404, ' +
+                'body was: ${error.error}');
             return throwError(new NotFoundError(error));
         }
         return throwError(new AppError(error));

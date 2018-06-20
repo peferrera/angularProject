@@ -25,9 +25,11 @@ export class AuthService extends DataService {
 
     /**
      *
-     * @url http://localhost:8080/auth/login
+     * @url http://localhost:8086/auth/login
      */
     login(login: LoginDTO): Observable<TokenDTO> {
+        console.log(login);
+        console.log(environment.urls.auth.login);
         return this.http.post(environment.urls.auth.login, login).pipe(
             map(res => <TokenDTO>res),
             catchError(this.handleError)

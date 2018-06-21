@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 					UsuarioValidator.hasWhiteSpace
 				]
 			),
-			'senha': new FormControl('', [Validators.required])
+			'senha': new FormControl('', Validators.required)
 		});
 	}
 
@@ -51,8 +51,8 @@ export class LoginComponent implements OnInit {
 			});
 	}
 
-	get usuario() {
-		return this.form.get('usuario');
+	get email() {
+		return this.form.get('email');
 	}
 
 

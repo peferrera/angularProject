@@ -19,61 +19,64 @@ import { AppErrorHandler } from './commons/app-error-handler';
 import { AuthGuard } from './service/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RedefinirSenhaComponent } from './redefinir-senha/redefinir-senha.component';
+import { RedefinirSenhaService } from './service/redefinir-senha.service';
+
 
 
 export function tokenGetter() {
-  const token = localStorage.getItem(environment.tokenName);
-  return token;
+	const token = localStorage.getItem(environment.tokenName);
+	return token;
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    EmpresaViewComponent,
-    EmpresaAddComponent,
-    NavbarComponent,
-    NotFoundComponent,
-    RedefinirSenhaComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 30000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-    }),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: [
-          environment.backEndUrl
-        ],
-        blacklistedRoutes: [
-          environment.urls.auth.url
-        ]
-      }
-    }),
-    RouterModule.forRoot([
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-      { path: 'empresaAdd', component: EmpresaAddComponent },
-      { path: 'redefinirSenha', component: RedefinirSenhaComponent },
-      { path: 'not-found', component: NotFoundComponent },
-      { path: '**', component: NotFoundComponent },
-    ]),
-  ],
-  providers: [
-    EmpresaService,
-    AuthService,
-    AppErrorHandler,
-    AuthGuard,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		EmpresaViewComponent,
+		EmpresaAddComponent,
+		NavbarComponent,
+		NotFoundComponent,
+		RedefinirSenhaComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
+		BrowserAnimationsModule,
+		ToastrModule.forRoot({
+			timeOut: 30000,
+			positionClass: 'toast-bottom-right',
+			preventDuplicates: true,
+		}),
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: tokenGetter,
+				whitelistedDomains: [
+					environment.backEndUrl
+				],
+				blacklistedRoutes: [
+					environment.urls.auth.url
+				]
+			}
+		}),
+		RouterModule.forRoot([
+			{ path: '', redirectTo: 'login', pathMatch: 'full' },
+			{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+			{ path: 'empresaAdd', component: EmpresaAddComponent },
+			{ path: 'redefinirSenha', component: RedefinirSenhaComponent },
+			{ path: 'not-found', component: NotFoundComponent },
+			{ path: '**', component: NotFoundComponent },
+		]),
+	],
+	providers: [
+		EmpresaService,
+		AuthService,
+		AppErrorHandler,
+		AuthGuard,
+		{ provide: ErrorHandler, useClass: AppErrorHandler },
+		RedefinirSenhaService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

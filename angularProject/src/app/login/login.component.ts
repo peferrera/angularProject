@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private authService: AuthService,
 		private route: ActivatedRoute,
-		private toaster: ToastrService,
 	) { }
 
 	ngOnInit() {
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(user).subscribe((token: TokenDTO) => {
 			localStorage.setItem(environment.tokenName, token.access_token);
 			const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-			// this.router.navigate([returnUrl || '/empresaAdd']);
+			this.router.navigate([returnUrl || '/empresaAdd']);
 		},
 			(e) => {
 				if (e instanceof BadCredentialsError) {

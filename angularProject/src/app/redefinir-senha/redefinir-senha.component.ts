@@ -28,8 +28,8 @@ export class RedefinirSenhaComponent implements OnInit {
 	onSubmit(form_email: string) {
 		this.redefinirSenhaService.recuperarSenha(form_email).subscribe(res => {
 			console.log(res);
-			this.toastr.success('Senha enviada', 'Redefinir Senha');
-			this.router.navigate(['/empresaAdd']);
+			this.toastr.success('Senha enviada por email', 'Redefinir Senha');
+			this.router.navigate(['/login']);
 		}, error => {
 			console.log(error);
 		}

@@ -8,23 +8,27 @@
     </div>
     <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link has-text-white">
-      Menu
-    </a>
+	  			Menu
+				</a>
 
         <div class="navbar-dropdown">
             <a class="navbar-item">
-        Histórico e Solicitações
-      </a>
+								Histórico e Solicitações
+						</a>
             <a class="navbar-item">
-        Dashboards de Gastos
-      </a>
+							Dashboards de Gastos
+						</a>
             <a class="navbar-item">
-        Perfil
-      </a>
+							Perfil
+						</a>
             <hr class="navbar-divider">
             <div class="navbar-item">
                 Sair
             </div>
         </div>
     </div>
-</nav>
+    <div class="navbar-end">
+        <button class="navbar-item button is-link is-medium " (click)="logout()">
+					Logout
+				</button>
+    </div>

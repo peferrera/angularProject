@@ -21,7 +21,7 @@ export class RedefinirSenhaComponent implements OnInit {
 
 	ngOnInit() {
 		this.form = new FormGroup({
-			'email': new FormControl('', [Validators.email, Validators.required])
+			'email': new FormControl('', [Validators.required, Validators.email])
 		});
 
 	}
@@ -34,5 +34,8 @@ export class RedefinirSenhaComponent implements OnInit {
 			console.log(error);
 		}
 		);
+	}
+	get email() {
+		return this.form.get('email');
 	}
 }

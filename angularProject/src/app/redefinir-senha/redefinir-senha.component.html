@@ -13,12 +13,17 @@
                 <div class="field">
                     <label class="label is-small">Email</label>
                     <div class="control">
-                        <input class="input is-shadowless login-input" formControlName="email" type="email" placeholder="exemplo@gmail.com" value="" autofocus required>
+                        <input class="input is-shadowless login-input" name="email" formControlName="email" type="email" placeholder="exemplo@gmail.com" value="" autofocus required>
+                    </div>
+                    <div class="is-danger" *ngIf="email.touched && email.invalid">
+                        <div *ngIf="email.errors.required">Email é
+                            <strong>obrigatório</strong>
+                        </div>
                     </div>
                 </div>
                 <div class="field">
                     <div class="control ">
-                        <button type="submit " class="button is-info is-focused crud-btn ">Redefinir Senha</button>
+                        <button [disabled]="form.invalid || form.pending" type="submit " class="button is-info is-focused crud-btn ">Redefinir Senha</button>
                     </div>
                 </div>
             </form>

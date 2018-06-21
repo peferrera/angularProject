@@ -20,6 +20,7 @@ import { AuthGuard } from './service/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RedefinirSenhaComponent } from './redefinir-senha/redefinir-senha.component';
 import { RedefinirSenhaService } from './service/redefinir-senha.service';
+import { EmailEnviadoComponent } from './email-enviado/email-enviado.component';
 
 
 
@@ -36,7 +37,8 @@ export function tokenGetter() {
 		EmpresaAddComponent,
 		NavbarComponent,
 		NotFoundComponent,
-		RedefinirSenhaComponent
+		RedefinirSenhaComponent,
+		EmailEnviadoComponent
 	],
 	imports: [
 		BrowserModule,
@@ -45,7 +47,7 @@ export function tokenGetter() {
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		ToastrModule.forRoot({
-			timeOut: 30000,
+			timeOut: 3000,
 			positionClass: 'toast-bottom-right',
 			preventDuplicates: true,
 		}),
@@ -65,6 +67,7 @@ export function tokenGetter() {
 			{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
 			{ path: 'empresaAdd', component: EmpresaAddComponent },
 			{ path: 'redefinirSenha', component: RedefinirSenhaComponent },
+			{ path: 'emailEnviado', component: EmailEnviadoComponent },
 			{ path: 'not-found', component: NotFoundComponent },
 			{ path: '**', component: NotFoundComponent },
 		]),

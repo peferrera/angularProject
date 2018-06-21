@@ -1,0 +1,4 @@
+@import url(../login/login.component.css);
+.login-card {
+    height: 170px;
+}

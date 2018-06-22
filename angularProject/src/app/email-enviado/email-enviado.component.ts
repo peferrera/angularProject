@@ -20,9 +20,9 @@ export class EmailEnviadoComponent implements OnInit {
 		}
 	redirect() {
 		this.toastr.success(
-			'Um link para redefinir sua senha foi enviado para o e-mail {{email}}', 'Email enviado!'
+			`Um link para redefinir sua senha foi enviado para o e-mail ${this.email}`, 'Email enviado!'
 		);
-		this.router.navigate(['/login']);
+		// this.router.navigate(['/login']);
 	}
 
 }

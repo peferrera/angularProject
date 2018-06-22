@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RedefinirSenhaComponent } from './redefinir-senha/redefinir-senha.component';
 import { RedefinirSenhaService } from './service/redefinir-senha.service';
 import { EmailEnviadoComponent } from './email-enviado/email-enviado.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 
 
@@ -38,7 +39,8 @@ export function tokenGetter() {
 		NavbarComponent,
 		NotFoundComponent,
 		RedefinirSenhaComponent,
-		EmailEnviadoComponent
+		EmailEnviadoComponent,
+		DashboardAdminComponent
 	],
 	imports: [
 		BrowserModule,
@@ -68,6 +70,7 @@ export function tokenGetter() {
 			{ path: 'empresaAdd', component: EmpresaAddComponent },
 			{ path: 'redefinirSenha', component: RedefinirSenhaComponent },
 			{ path: 'emailEnviado', component: EmailEnviadoComponent },
+			{ path: 'dashboardAdmin', component: DashboardAdminComponent },
 			{ path: 'not-found', component: NotFoundComponent },
 			{ path: '**', component: NotFoundComponent },
 		]),

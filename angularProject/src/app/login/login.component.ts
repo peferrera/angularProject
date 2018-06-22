@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(user).subscribe((token: TokenDTO) => {
 			localStorage.setItem(environment.tokenName, token.access_token);
 			const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-			this.router.navigate([returnUrl || '/empresaAdd']);
+			this.router.navigate([returnUrl || '/dashboardAdmin']);
 		},
 			(e) => {
 				if (e instanceof BadCredentialsError) {

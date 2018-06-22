@@ -11,9 +11,9 @@
 						</label>
             <form class="example-class" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
                 <div class="field">
-                    <label class="label is-small">Email</label>
+                    <label class="label is-small has-text-grey-dark has-text-weight-light">Email</label>
                     <div class="control">
-                        <input class="input is-shadowless login-input" name="email" formControlName="email" type="email" placeholder="exemplo@gmail.com" value="" autofocus required>
+                        <input class="input is-shadowless app-input is-info" name="email" formControlName="email" type="email" placeholder="exemplo@gmail.com" value="" autofocus required>
                     </div>
                     <div class="is-danger" *ngIf="email.touched && email.invalid">
                         <div *ngIf="email.errors.required">Email é

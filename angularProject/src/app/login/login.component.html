@@ -8,27 +8,31 @@
         <div class="content">
             <form class="example-class" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
                 <div class="field">
-                    <label class="label is-small">Email</label>
+                    <label class="label is-small has-text-grey-dark has-text-weight-light">Email</label>
                     <div class="control">
-                        <input class="input is-shadowless login-input" formControlName="email" type="email" placeholder="exemplo@gmail.com">
+                        <input class="input is-shadowless is-info login-input" formControlName="email" type="email" placeholder="exemplo@gmail.com">
                     </div>
-                    <div class="is-danger" *ngIf="email.touched && email.invalid">
-                        <div *ngIf="email.errors.required">Email é
-                            <strong>obrigatório</strong>
+                    <div *ngIf="email.touched && email.invalid">
+                        <div *ngIf="email.errors.required">
+                            <p class="help is-danger">Email é obrigatório</p>
                         </div>
-                        <div *ngIf="email.errors.minlength">Usuário precisa ter no mínimo {{email.errors.minlength.requiredLength}} caracteres</div>
-                        <div *ngIf="email.errors.haswhitespace">Não pode conter espaços em branco</div>
-                        <div *ngIf="email.errors.existentP">Este email ja existe</div>
+                        <div *ngIf="email.errors.minlength">
+                            <p class="help is-danger"> Usuário precisa ter no mínimo {{email.errors.minlength.requiredLength}} caracteres</p>
+                        </div>
+                        <div *ngIf="email.errors.haswhitespace">
+                            <p class="hel is-danger"> Não pode conter espaços em branco</p>
+                        </div>
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label is-small">Senha</label>
+                    <label class="label is-small has-text-grey-dark has-text-weight-light">Senha</label>
                     <div class="control">
-                        <input class="input is-shadowless login-input" formControlName="senha" type="password" placeholder="Senha" value="" required>
+                        <input class="input is-shadowless is-info login-input" formControlName="senha" type="password" placeholder="Senha" value="" required>
                     </div>
-                    <div class="is-danger" *ngIf="senha.touched && senha.invalid">
-                        <div *ngIf="senha.errors.required">Senha é
-                            <strong>obrigatória</strong>
+                    <div *ngIf="senha.touched && senha.invalid">
+                        <div *ngIf="senha.errors.required">
+
+                            <p class="help is-danger">Senha é obrigatória</p>
                         </div>
                     </div>
                     <div class="field">
@@ -40,7 +44,7 @@
             </form>
             <div class="field is-grouped is-grouped-centered sub-title">
                 <p class="control">
-                    <a href="/redefinirSenha" class="is-black">ESQUECI MINHA SENHA</a>
+                    <a href="/redefinirSenha" class="has-text-grey-dark">ESQUECI MINHA SENHA</a>
                 </p>
                 <p class="control">
                     <a href="/empresaAdd">QUERO ME CADASTRAR</a>

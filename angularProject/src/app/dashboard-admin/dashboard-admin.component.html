@@ -5,7 +5,7 @@
     </div>
 
 </div>
-<!-- Lista de reembolso-->
+<!-- Buttons-->
 <div class="field is-grouped is-grouped-left sub-title">
     <p class="control">
         <a href="/login" class="button is-primary">Aprovar</a>
@@ -14,6 +14,7 @@
         <a href="/empresaAdd" class="button is-danger">Recusar</a>
     </p>
 </div>
+<!-- Lista de reembolso-->
 <div class="box">
     <div class="table is-striped is-hoverable is-bordered ">
         <thead>
@@ -22,16 +23,16 @@
                     Reembolso
                 </th>
                 <th>
-                    <abbr title="Status">Status</abbr>
+                    Status
                 </th>
                 <th>
-                    <abbr title="Valor">Valor</abbr>
+                    Valor
                 </th>
                 <th>
-                    <abbr title="Categoria">Categoria</abbr>
+                    Categoria
                 </th>
                 <th>
-                    <abbr title="Usuario">Usuario</abbr>
+                    Usuario
                 </th>
             </tr>
         </thead>
@@ -49,28 +50,118 @@
 </div>
 <!-- Button add reembolso-->
 <div class="">
-    <div class="buttons is-left">
-        <button class="button is-success" aria-label="Adicionar Reembolso" (click)="toggleModal()">
-            <span class="icon">
+    <div class="buttons is-pulled-right">
+        <button class="button is-primary" aria-label="Adicionar Reembolso" (click)="toggleModal()">
+			<span class="icon">
 							<i class="fas fa-plus">+</i>
 						</span>
-        </button>
+		</button>
     </div>
 </div>
 <!--Modal add reembolso-->
 <div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
     <div class="modal-background" (click)="toggleModal()"></div>
     <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Adicionar Reembolso</p>
+        <header class="modal-card-head has-background-info">
+            <p class="modal-card-title has-text-white">Solicitar Reembolso</p>
             <button class="delete" aria-label="Fechar" (click)="toggleModal()"></button>
         </header>
         <section class="modal-card-body">
-            <!-- Content ... -->
+            <h4 class="subtitle is-5">Preencha as informações abaixo para solicitar reembolso</h4>
+            <!--Form-->
+            <form class="example-class" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Nome do Reembolso</label>
+                            <div class="control">
+                                <input class="input is-shadowless is-info app-input" formControlName="reembolso" type="text" placeholder="Viagem a Curitiba etc...">
+                            </div>
+                            <div *ngIf="reembolso.touched && reembolso.invalid">
+                                <div *ngIf="reembolso.errors.required">
+                                    <p class="help is-danger">Nome do Reembolso é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="control">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
+                            <div class="select is-info">
+                                <select aria-placeholder="Selecionar Categoria">
+																	<option>Hospedagem</option>
+																	<option>Alimentação</option>
+																	<option>Transporte</option>
+																	<option>With options</option>
+																</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <p class="control has-icons-left">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Data</label>
+                            <input class="input is-shadowless is-info app-input" type="text" placeholder="Data" required>
+                            <span class="icon is-small is-left">
+															<i class="fas fa-envelope"></i>
+														</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-2">
+                        <div class="field">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Valor</label>
+                            <div class="control">
+                                <input class="input is-shadowless is-info app-input" formControlName="valor" type="text" placeholder="valor" required>
+                            </div>
+                            <div *ngIf="valor.touched && valor.invalid">
+                                <div *ngIf="valor.errors.required">
+                                    <p class="help is-danger">Valor é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column">
+                        <div class="file has-name is-outlined is-link">
+                            <label class="file-label">
+																	<input class="file-input" type="file" name="resume">
+																	<span class="file-cta">
+																		<span class="file-icon">
+																			<i class="fas fa-upload"></i>
+																		</span>
+																		<span class="file-label">
+																			Adicionar Arquivo 
+																		</span>
+																	</span>
+																	<span class="file-name">...</span>
+																</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped is-grouped-right">
+                    <p class="control">
+                        <a href="/solicitarReembolso" class="button is-primary">Solicitar</a>
+                    </p>
+                    <p class="control">
+                        <a href="#" class="button is-danger" (click)="toggleModal()">Cancelar</a>
+                    </p>
+
+
+
+                </div>
+
+            </form>
         </section>
-        <footer class="modal-card-foot">
-            <button class="button is-success">Salvar</button>
-            <button class="button" (click)="toggleModal()">Cancelar</button>
-        </footer>
+        <!-- <footer class="modal-card-foot">
+            <button class="button is-primary">Salvar</button>
+            <button class="button is-danger" (click)="toggleModal()">Cancelar</button>
+        </footer>-->
     </div>
 </div>

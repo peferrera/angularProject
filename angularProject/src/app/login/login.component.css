@@ -1,6 +1,6 @@
 .login-card {
     width: 433px;
-    height: 362px;
+    height: 380px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 60px;
@@ -54,34 +54,15 @@
 .crud-btn {
     width: 100%;
     height: 36px;
-    border-radius: 2px;
-    background-color: #2687e9;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
     font-family: 'Roboto';
     font-size: 14px;
-    letter-spacing: 0.5px;
     text-align: center;
-    color: #ffffff;
-    align-self: center;
+    margin-top: 10px;
 }
 
-.is-black {
-    color: #363636;
-}
-
-.login-input {
+.app-input {
     width: 100%;
-    background: transparent;
     border-top: transparent !important;
     border-left: transparent !important;
     border-right: transparent !important;
-    border-bottom: 3px solid !important;
-    color: #2687e9;
-    box-shadow: none;
-}
-
-label {
-    font-weight: 500;
-    color: #363636;
-    box-shadow: none;
 }

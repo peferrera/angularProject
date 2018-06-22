@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardAdminComponent implements OnInit {
 	isModalActive = false;
+	// valorSolicitado -> varialvel de valor do reembolso
 
 	constructor() { }
 

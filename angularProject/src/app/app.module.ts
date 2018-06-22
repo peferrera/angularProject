@@ -49,7 +49,7 @@ export function tokenGetter() {
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		ToastrModule.forRoot({
-			timeOut: 3000,
+			timeOut: 10000,
 			positionClass: 'toast-bottom-right',
 			preventDuplicates: true,
 		}),

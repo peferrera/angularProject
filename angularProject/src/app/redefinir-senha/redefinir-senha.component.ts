@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { RedefinirSenhaService } from '../service/redefinir-senha.service';
 import { HttpClient } from '@angular/common/http';
+import { EmailEnviadoComponent } from '../email-enviado/email-enviado.component';
 
 @Component({
 	selector: 'app-redefinir-senha',
@@ -27,7 +28,10 @@ export class RedefinirSenhaComponent implements OnInit {
 	}
 	onSubmit(form_email: string) {
 		this.redefinirSenhaService.recuperarSenha(form_email).subscribe(res => {
-			this.router.navigate(['/emailEnviado']);
+			this.toastr.success(
+				`Um link para redefinir sua senha foi enviado para o e-mail ${ form_email }`, 'Email enviado!'
+			);
+			this.router.navigate(['/login']);
 		}, error => {
 			console.log(error);
 		}

@@ -33,7 +33,7 @@ export class EmpresaAddComponent implements OnInit {
 	onSubmit(form_empresa: EmpresaDTO) {
 		this.empresaService.cadastrar(form_empresa).subscribe(res => {
 			this.toastr.success('Usuario cadastrado com Sucesso', 'Sucesso!');
-			this.router.navigate(['/login']);
+			this.router.navigate(['/dashboardAdmin']);
 		}, error => {
 			console.log(error);
 		}

@@ -22,6 +22,8 @@ import { RedefinirSenhaComponent } from './redefinir-senha/redefinir-senha.compo
 import { RedefinirSenhaService } from './service/redefinir-senha.service';
 import { EmailEnviadoComponent } from './email-enviado/email-enviado.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ReembolsoService } from './service/reembolso.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -48,6 +50,7 @@ export function tokenGetter() {
 		FormsModule,
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
+		CommonModule,
 		ToastrModule.forRoot({
 			timeOut: 10000,
 			positionClass: 'toast-bottom-right',
@@ -81,7 +84,8 @@ export function tokenGetter() {
 		AppErrorHandler,
 		AuthGuard,
 		{ provide: ErrorHandler, useClass: AppErrorHandler },
-		RedefinirSenhaService
+		RedefinirSenhaService,
+		ReembolsoService
 	],
 	bootstrap: [AppComponent]
 })

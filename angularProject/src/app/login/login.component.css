@@ -8,7 +8,7 @@
     border-color: black;
     background-color: #ffffff;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    box-shadow: 0 2px 5px 0 var(--black-26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     display: flow-root;
     justify-content: center;
     align-content: center;

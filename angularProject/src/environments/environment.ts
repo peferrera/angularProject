@@ -18,9 +18,16 @@ export const environment = {
 		usuario: {
 			url: 'http://localhost:8086/usuario/',
 			recuperarSenha: 'http://localhost:8086/usuario/recuperasenha',
-
-
-		}
+		},
+		reembolso: {
+			url: 'http://localhost:8086/reembolso/',
+			addReembolso: 'http://localhost:8086/reembolso/adiciona',
+			buscarCategoria: 'http://localhost:8086/reembolso/adiciona',
+		},
+		categoria: {
+			url: 'http://localhost:8086/categoria/',
+			buscarCategoria: 'http://localhost:8086/categoria/buscatodas',
+		},
 	}
 };
 

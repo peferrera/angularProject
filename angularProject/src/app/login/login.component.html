@@ -10,7 +10,7 @@
                 <div class="field">
                     <label class="label is-small has-text-grey-dark has-text-weight-light">Email</label>
                     <div class="control">
-                        <input class="input is-shadowless is-info login-input" formControlName="email" type="email" placeholder="exemplo@gmail.com">
+                        <input class="input is-shadowless is-info app-input" formControlName="email" type="email" placeholder="exemplo@gmail.com">
                     </div>
                     <div *ngIf="email.touched && email.invalid">
                         <div *ngIf="email.errors.required">
@@ -27,7 +27,7 @@
                 <div class="field">
                     <label class="label is-small has-text-grey-dark has-text-weight-light">Senha</label>
                     <div class="control">
-                        <input class="input is-shadowless is-info login-input" formControlName="senha" type="password" placeholder="Senha" value="" required>
+                        <input class="input is-shadowless is-info app-input" formControlName="senha" type="password" placeholder="Senha" value="" required>
                     </div>
                     <div *ngIf="senha.touched && senha.invalid">
                         <div *ngIf="senha.errors.required">

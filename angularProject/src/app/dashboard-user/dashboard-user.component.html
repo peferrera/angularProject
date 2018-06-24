@@ -1,0 +1,162 @@
+<app-navbar></app-navbar>
+<div class="columns">
+    <div class="column">
+        <a></a>
+    </div>
+
+</div>
+<!-- Buttons-->
+<div class="field is-grouped is-grouped-left sub-title">
+    <p class="control">
+        <a href="/login" class="button is-primary">Aprovar</a>
+    </p>
+    <p class="control">
+        <a href="/empresaAdd" class="button is-danger">Recusar</a>
+    </p>
+</div>
+<!-- Lista de reembolso-->
+<div class="box">
+    <div class="table is-striped is-hoverable">
+        <thead>
+            <tr>
+                <th>
+                    Reembolso {{bruno}}
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th>
+                    Usuario
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Blue tree towers</td>
+                <td>positivo</td>
+                <td>R$ 500</td>
+                <td>Hospedagem</td>
+                <td>Gabriel</td>
+            </tr>
+        </tbody>
+
+    </div>
+</div>
+<!-- Button add reembolso-->
+<div class="">
+    <div class="buttons is-pulled-right">
+        <button class="button is-primary" aria-label="Adicionar Reembolso" (click)="toggleModal()">
+      <span class="icon">
+        <i class="fas fa-plus">+</i>
+      </span>
+    </button>
+    </div>
+</div>
+<!--Modal add reembolso-->
+<div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
+    <div class="modal-background" (click)="toggleModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-info">
+            <p class="modal-card-title has-text-white">Solicitar Reembolso</p>
+
+            <button class="delete" aria-label="Fechar" (click)="toggleModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <h4 class="subtitle is-5">Preencha as informações abaixo para solicitar reembolso</h4>
+            <!--Form-->
+            <form class="example-class" [formGroup]="formReembolso" (ngSubmit)="onSubmit(formReembolso.value)">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Nome do Reembolso</label>
+                            <div class="control">
+                                <input class="input is-shadowless is-info app-input" formControlName="nome" type="text" placeholder="Viagem a Curitiba etc...">
+                            </div>
+                            <div *ngIf="nome.touched && nome.invalid">
+                                <div *ngIf="nome.errors.required">
+                                    <p class="help is-danger">Nome do Reembolso é obrigatório</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-6">
+                        <div class="control">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
+                            <div class="select is-info">
+                                <select formControlname="categoria">
+                  <option value="">Selecionar Categoria</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria">
+                    {{categoria.nome}}
+                  </option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <p class="control has-icons-left">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Data</label>
+                            <input class="input is-shadowless is-info app-input" formControlName="data" type="date" placeholder="Data" required>
+                            <span class="icon is-small is-left">
+                <fa-icon [icon]="faCalendarAlt"></fa-icon>
+              </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="columns">
+                    <div class="column is-4">
+                        <div class="field">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Valor</label>
+                            <div class="control">
+                                <input class="input is-shadowless is-info app-input" formControlName="valorSolicitado" type="text" placeholder="valor" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="column is-8">
+                        <div class="file has-name is-outlined is-link">
+                            <label class="file-label">
+                <input formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Adicionar Arquivo
+                  </span>
+                </span>
+                <span class="file-name"></span>
+              </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="field is-grouped is-grouped-right">
+                    <p class="control">
+                        <button type="submit" class="button is-primary">Solicitar</button>
+                    </p>
+                    <p class="control">
+                        <a class="button is-danger" (click)="toggleModal()">Cancelar</a>
+                    </p>
+                </div>
+
+            </form>
+        </section>
+        <!-- <footer class="modal-card-foot">
+			<button class="button is-primary">Salvar</button>
+			<button class="button is-danger" (click)="toggleModal()">Cancelar</button>
+		</footer>-->
+    </div>
+</div>

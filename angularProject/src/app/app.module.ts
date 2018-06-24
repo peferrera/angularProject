@@ -24,7 +24,7 @@ import { EmailEnviadoComponent } from './email-enviado/email-enviado.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { ReembolsoService } from './service/reembolso.service';
 import { CommonModule } from '@angular/common';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 export function tokenGetter() {
@@ -51,6 +51,7 @@ export function tokenGetter() {
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		CommonModule,
+		FontAwesomeModule,
 		ToastrModule.forRoot({
 			timeOut: 10000,
 			positionClass: 'toast-bottom-right',
@@ -69,13 +70,13 @@ export function tokenGetter() {
 		}),
 		RouterModule.forRoot([
 			{ path: '', redirectTo: 'login', pathMatch: 'full' },
-			{ path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-			{ path: 'empresaAdd', component: EmpresaAddComponent },
+			{ path: 'login',          component: LoginComponent, canActivate: [LoginGuard] },
+			{ path: 'empresaAdd',     component: EmpresaAddComponent },
 			{ path: 'redefinirSenha', component: RedefinirSenhaComponent },
-			{ path: 'emailEnviado', component: EmailEnviadoComponent },
+			{ path: 'emailEnviado',   component: EmailEnviadoComponent },
 			{ path: 'dashboardAdmin', component: DashboardAdminComponent },
-			{ path: 'not-found', component: NotFoundComponent },
-			{ path: '**', component: NotFoundComponent },
+			{ path: 'not-found',      component: NotFoundComponent },
+			{ path: '**',             component: NotFoundComponent },
 		]),
 	],
 	providers: [

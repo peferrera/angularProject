@@ -16,9 +16,8 @@ export class DashboardAdminComponent implements OnInit {
 	isModalActive = false;
 	formReembolso: FormGroup;
 
-	public categorias: any = ['memes'];
-	bruno = 'BRUNOOO';
-	public lista: any = [{ nome: 'A', id: 1 }, { nome: 'B', id: 1 }, { nome: 'C', id: 1 }, { nome: 'D', id: 1}];
+	public categorias: any = [];
+	public lista: any = [{ nome: 'A', id: 1 }, { nome: 'B', id: 1 }, { nome: 'C', id: 1 }, { nome: 'D', id: 1 }];
 
 
 	constructor(
@@ -39,7 +38,7 @@ export class DashboardAdminComponent implements OnInit {
 			'categoria': new FormControl('', Validators.required),
 			'valorSolicitado': new FormControl('', Validators.required),
 			'data': new FormControl('', Validators.required),
-			'uploadUrl': new FormControl('')
+			'uploadUrl': new FormControl(null, Validators.required)
 
 		});
 

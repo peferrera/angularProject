@@ -42,7 +42,7 @@
                 <td>positivo</td>
                 <td>R$ 320</td>
                 <td>Alimentação</td>
-                <td>Pedro Ferreira</td>
+                <td>Pedro Ferreira{{ bruno }}</td>
             </tr>
         </tbody>
 
@@ -63,7 +63,7 @@
     <div class="modal-background" (click)="toggleModal()"></div>
     <div class="modal-card">
         <header class="modal-card-head has-background-info">
-            <p class="modal-card-title has-text-white">Solicitar Reembolso kk {{ bruno }}</p>
+            <p class="modal-card-title has-text-white">Solicitar Reembolso kk </p>
 
             <button class="delete" aria-label="Fechar" (click)="toggleModal()"></button>
         </header>
@@ -92,16 +92,16 @@
                         <div class="control">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
                             <div class="select is-info">
-
                                 <select formControlname="categoria">
-                  <option value="aa">Select</option>
-                  <option *ngFor="let list of lista" [value]="list.id">
-                    {{list.nome}}
+                  <option value="">Selecionar Categoria</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria">
+                    {{categoria.nome}}
                   </option>
                 </select>
                             </div>
                         </div>
                     </div>
+
                     <div class="column">
                         <p class="control has-icons-left">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Data</label>
@@ -114,16 +114,11 @@
                 </div>
 
                 <div class="columns">
-                    <div class="column is-2">
+                    <div class="column is-4">
                         <div class="field">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Valor</label>
                             <div class="control">
                                 <input class="input is-shadowless is-info app-input" formControlName="valorSolicitado" type="text" placeholder="valor" required>
-                            </div>
-                            <div *ngIf="valorSolicitado.touched && valorSolicitado.invalid">
-                                <div *ngIf="valorSolicitado.errors.required">
-                                    <p class="help is-danger">Valor é obrigatório</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,21 +137,19 @@
                     Adicionar Arquivo
                   </span>
                 </span>
-                <span class="file-name">...</span>
+                <span class="file-name"></span>
               </label>
                         </div>
                     </div>
                 </div>
+
                 <div class="field is-grouped is-grouped-right">
                     <p class="control">
                         <button type="submit" class="button is-primary">Solicitar</button>
                     </p>
                     <p class="control">
-                        <a href="#" class="button is-danger" (click)="toggleModal()">Cancelar</a>
+                        <a class="button is-danger" (click)="toggleModal()">Cancelar</a>
                     </p>
-
-
-
                 </div>
 
             </form>

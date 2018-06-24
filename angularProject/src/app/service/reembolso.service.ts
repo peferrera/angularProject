@@ -21,6 +21,7 @@ export class ReembolsoService extends DataService {
 	}
 	addReembolso(reembolso) {
 		console.log(reembolso);
+		console.log(environment.tokenName);
 
 		let requestHeaders = new HttpHeaders();
 		requestHeaders = requestHeaders.set('Authorization', 'Bearer' + localStorage.getItem(environment.tokenName));
@@ -35,6 +36,7 @@ export class ReembolsoService extends DataService {
 		requestHeaders = requestHeaders.set('Authorization', 'Bearer' + localStorage.getItem(environment.tokenName));
 
 		return this.http.get(environment.urls.categoria.buscarCategoria, {
-			headers: requestHeaders});
+			headers: requestHeaders
+		});
 	}
 }

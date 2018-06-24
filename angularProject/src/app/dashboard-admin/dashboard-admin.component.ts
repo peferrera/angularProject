@@ -17,7 +17,7 @@ export class DashboardAdminComponent implements OnInit {
 	formReembolso: FormGroup;
 
 	public categorias: any = ['memes'];
-	public bruno = 'BRUNOOO';
+	bruno = 'BRUNOOO';
 	public lista: any = [{ nome: 'A', id: 1 }, { nome: 'B', id: 1 }, { nome: 'C', id: 1 }, { nome: 'D', id: 1}];
 
 

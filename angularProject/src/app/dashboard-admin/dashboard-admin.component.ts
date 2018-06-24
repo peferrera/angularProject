@@ -17,7 +17,6 @@ export class DashboardAdminComponent implements OnInit {
 	formReembolso: FormGroup;
 
 	public categorias: any = [];
-	public lista: any = [{ nome: 'A', id: 1 }, { nome: 'B', id: 1 }, { nome: 'C', id: 1 }, { nome: 'D', id: 1 }];
 
 
 	constructor(
@@ -46,9 +45,6 @@ export class DashboardAdminComponent implements OnInit {
 
 	toggleModal() {
 		this.isModalActive = !this.isModalActive;
-	}
-	compareCategoria(val1, val2) {
-		return val1.id === val2.id;
 	}
 	onSubmit(reembolso: ReembolsoDTO) {
 		this.reembolsoService.addReembolso(reembolso).subscribe((res) => {

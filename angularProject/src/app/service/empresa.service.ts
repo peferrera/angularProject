@@ -15,13 +15,23 @@ export class EmpresaService extends DataService {
 		super(environment.urls.empresa.url, http);
 	}
 
-	public cadastrar(empresa) {
-		console.log(empresa);
+	public cadastrarUser(user) {
+		console.log(user);
 		let requestHeaders = new HttpHeaders();
 		requestHeaders = requestHeaders.set('Authorization',
 			'Bearer ' + localStorage.getItem(environment.tokenName));
 
-		return this.http.post(environment.urls.empresa.url, empresa, {
+		return this.http.post(environment.urls.usuario.cadastrarUser, user, {
+			headers: requestHeaders
+		});
+	}
+	public cadastrarAdmin(admin) {
+		console.log(admin);
+		let requestHeaders = new HttpHeaders();
+		requestHeaders = requestHeaders.set('Authorization',
+			'Bearer ' + localStorage.getItem(environment.tokenName));
+
+		return this.http.post(environment.urls.usuario.cadastrarAdmin, admin, {
 			headers: requestHeaders
 		});
 	}

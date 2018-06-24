@@ -8,7 +8,7 @@ import { TokenDTO } from '../dto/token-dto';
 import { BadCredentialsError } from '../commons/bad-credentials';
 import { UsuarioValidator } from './user-validator';
 import { ToastrService } from 'ngx-toastr';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faHome } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class LoginComponent implements OnInit {
 	form: FormGroup;
-	faCoffee = faCoffee;
+	faHome = faHome;
 
 	constructor(
 		private router: Router,

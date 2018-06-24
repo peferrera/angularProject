@@ -9,7 +9,7 @@
     <div class="card-content">
         <div class="crud-content">
             <form class="example-class" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-                <div class=" field ">
+                <div class="field">
                     <label class="label is-small ">Nome</label>
                     <div class="control ">
                         <input formControlName="nome" class="input is-hoverable is-info is-shadowless crud-input" type="text" placeholder="Nome " required autofocus>
@@ -40,25 +40,33 @@
                 <div class="field ">
                     <div class="control ">
                         <label class=" block">
-              <input type="radio" class="is-checkradio"> Criar nova empresa (Admin)
+              <input type="radio" (change)="isAdmin=true" class="is-checkradio" name="userRole" id="admin"> Criar nova empresa (Admin)
             </label>
 
                         <label class="block ">
-              <input type="radio" class="is-checkradio" name="question " checked> Inserir Código existente
+              <input type="radio" (change)="isAdmin=false" class="is-checkradio" name="userRole" id="user"> Inserir Código existente
             </label>
                     </div>
                 </div>
 
-                <div class="field ">
-                    <label class="label is-small ">Código da empresa</label>
-                    <div class="control ">
-                        <input class="input is-hoverable is-info is-shadowless crud-input" formControlName="codigoEmpresa" type="number" placeholder="Inserir código da empresa " required>
-                    </div>
 
+                <div class="field ">
+                    <div *ngIf="isAdmin">
+                        <label class="label is-small">Nome da Empresa</label>
+                        <div class="control ">
+                            <input class="input is-hoverable is-info is-shadowless crud-input" formControlName="empresa" type="text" placeholder="Nome da Empresa " required>
+                        </div>
+                    </div>
+                    <div *ngIf="!isAdmin" class="label is-small">
+                        <label>Insira o Código da Empresa</label>
+                        <div class="control">
+                            <input class="input is-hoverable is-info is-shadowless crud-input" formControlName="empresa" type="number" placeholder="Insira o Código da Empresa" required>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="control ">
-                    <input type="submit" class="button is-info is-focused crud-btn " value="Cadastrar">
+                    <input type="submit" class="button is-info is-focused is-size-12" value="Cadastrar">
                 </div>
             </form>
 

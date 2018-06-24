@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 
 export class EmpresaAddComponent implements OnInit {
 	form: FormGroup;
+	isAdmin: Boolean = false;
 
 	constructor(
 		private empresaService: EmpresaService,
@@ -26,18 +27,28 @@ export class EmpresaAddComponent implements OnInit {
 			'nome': new FormControl('', [Validators.minLength(4), Validators.required]),
 			'email': new FormControl('', [Validators.minLength(4), Validators.required, Validators.email]),
 			'senha': new FormControl('', [Validators.required]),
-			'codigoEmpresa': new FormControl('', [Validators.minLength(4), Validators.required])
+			'empresa': new FormControl('', [Validators.minLength(4), Validators.required])
 		});
 	}
 
-	onSubmit(form_empresa: EmpresaDTO) {
-		this.empresaService.cadastrar(form_empresa).subscribe(res => {
-			this.toastr.success('Usuario cadastrado com Sucesso', 'Sucesso!');
-			this.router.navigate(['/dashboardAdmin']);
-		}, error => {
-			console.log(error);
+	onSubmit(form_user: EmpresaDTO) {
+		if (this.isAdmin) {
+			this.empresaService.cadastrarAdmin(form_user).subscribe(res => {
+				this.toastr.success('Usuário cadastrado com Sucesso', 'Sucesso!');
+				this.router.navigate(['/dashboardAdmin']);
+			}, error => {
+				console.log(error);
+			}
+			);
+		} else {
+			this.empresaService.cadastrarUser(form_user).subscribe(res => {
+				this.toastr.success('Usuario cadastrado com Sucesso', 'Sucesso!');
+				this.router.navigate(['/dashboardUser']);
+			}, error => {
+				console.log(error);
+			}
+			);
 		}
-		);
 	}
 
 	get nome() {

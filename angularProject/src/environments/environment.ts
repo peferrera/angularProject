@@ -19,7 +19,8 @@ export const environment = {
 			url: 'http://localhost:8086/usuario/',
 			recuperarSenha: 'http://localhost:8086/usuario/recuperasenha',
 			cadastrarAdmin: 'http://localhost:8086/usuario/cadastro/admineempresa',
-			cadastrarUser: 'http://localhost:8086/usuario/cadastro/porcodigo'
+			cadastrarUser: 'http://localhost:8086/usuario/cadastro/porcodigo',
+			role: 'http://localhost:8086/usuario/role'
 
 		},
 		reembolso: {

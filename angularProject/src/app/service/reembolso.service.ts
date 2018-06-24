@@ -21,22 +21,11 @@ export class ReembolsoService extends DataService {
 	}
 	addReembolso(reembolso) {
 		console.log(reembolso);
-		console.log(environment.tokenName);
-
-		let requestHeaders = new HttpHeaders();
-		requestHeaders = requestHeaders.set('Authorization', 'Bearer' + localStorage.getItem(environment.tokenName));
-
-		return this.http.post(environment.urls.reembolso.addReembolso, reembolso, {
-			headers: requestHeaders
-		});
+		console.log(environment.tokenName.toString);
+		return this.http.post(environment.urls.reembolso.addReembolso, reembolso, this.getHeaders());
 	}
 
 	buscarCategorias() {
-		let requestHeaders = new HttpHeaders();
-		requestHeaders = requestHeaders.set('Authorization', 'Bearer' + localStorage.getItem(environment.tokenName));
-
-		return this.http.get(environment.urls.categoria.buscarCategoria, {
-			headers: requestHeaders
-		});
+		return this.http.get(environment.urls.categoria.buscarCategoria, this.getHeaders());
 	}
 }

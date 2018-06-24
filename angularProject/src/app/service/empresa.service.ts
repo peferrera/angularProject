@@ -17,23 +17,17 @@ export class EmpresaService extends DataService {
 
 	public cadastrarUser(user) {
 		console.log(user);
-		let requestHeaders = new HttpHeaders();
-		requestHeaders = requestHeaders.set('Authorization',
-			'Bearer ' + localStorage.getItem(environment.tokenName));
-
-		return this.http.post(environment.urls.usuario.cadastrarUser, user, {
-			headers: requestHeaders
-		});
+		return this.http.post(environment.urls.usuario.cadastrarUser, user, this.getHeaders());
 	}
 	public cadastrarAdmin(admin) {
 		console.log(admin);
-		let requestHeaders = new HttpHeaders();
-		requestHeaders = requestHeaders.set('Authorization',
-			'Bearer ' + localStorage.getItem(environment.tokenName));
-
-		return this.http.post(environment.urls.usuario.cadastrarAdmin, admin, {
-			headers: requestHeaders
-		});
+		return this.http.post(environment.urls.usuario.cadastrarAdmin, admin, this.getHeaders());
 	}
+	public getRole() {
+		return this.http.get(environment.urls.usuario.role, this.getHeaders());
+	}
+
+
+
 
 }

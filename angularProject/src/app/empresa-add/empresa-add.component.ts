@@ -34,13 +34,13 @@ export class EmpresaAddComponent implements OnInit {
 	onSubmit(form_user: EmpresaDTO) {
 		if (this.isAdmin) {
 			this.empresaService.cadastrarAdmin(form_user).subscribe(res => {
-				this.toastr.success('Usuário cadastrado com Sucesso', 'Sucesso!');
+				this.toastr.success('Administrador cadastrado com Sucesso', 'Sucesso!');
 				this.router.navigate(['/dashboardAdmin']);
 			}, error => {
 				console.log(error);
 			}
 			);
-		} else {
+		} if (!this.isAdmin) {
 			this.empresaService.cadastrarUser(form_user).subscribe(res => {
 				this.toastr.success('Usuario cadastrado com Sucesso', 'Sucesso!');
 				this.router.navigate(['/dashboardUser']);

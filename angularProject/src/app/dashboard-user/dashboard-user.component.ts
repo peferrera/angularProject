@@ -4,6 +4,7 @@ import { ReembolsoService } from '../service/reembolso.service';
 import { Router } from '@angular/router';
 import { ReembolsoDTO } from '../dto/reembolso-dto';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { EmpresaService } from '../service/empresa.service';
 
 
 @Component({
@@ -15,15 +16,22 @@ export class DashboardUserComponent implements OnInit {
 	isModalActive = false;
 	formReembolso: FormGroup;
 	public categorias: any = [];
+	role: any;
 	faCalendarAlt = faCalendarAlt;
 
 
 	constructor(
 		private router: Router,
 		private reembolsoService: ReembolsoService,
+		private empresaService: EmpresaService
 	) { }
 
 	ngOnInit() {
+
+		this.empresaService.getRole().subscribe(res => {
+			this.role = res;
+			console.log(this.role);
+		});
 
 		this.reembolsoService.buscarCategorias().subscribe(res => {
 			console.log(this.categorias);

@@ -92,9 +92,9 @@
                         <div class="control">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
                             <div class="select is-info">
-                                <select formControlname="categoria">
-                  <option value="">Selecionar Categoria</option>
-                  <option *ngFor="let categoria of categorias" [value]="categoria">
+                                <select formControlName="categoria">
+                  <option disabled selected value="">Selecionar Categoria</option>
+                  <option *ngFor="let categoria of categorias" [value]="categoria.nome">
                     {{categoria.nome}}
                   </option>
                 </select>
@@ -124,7 +124,7 @@
                     </div>
 
 
-                    <div class="column is-8">
+                    <div class="column is-8 is-center">
                         <div class="file has-name is-outlined is-link">
                             <label class="file-label">
                 <input formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
@@ -136,7 +136,7 @@
                     Adicionar Arquivo
                   </span>
                 </span>
-                <span class="file-name"></span>
+                <span class="file-name"> </span>
               </label>
                         </div>
                     </div>

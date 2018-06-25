@@ -15,7 +15,6 @@ export class ReembolsoService extends DataService {
 
 	constructor(
 		http: HttpClient,
-		empresaService: EmpresaService
 	) {
 		super(environment.urls.reembolso.url, http);
 	}

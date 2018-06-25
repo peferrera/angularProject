@@ -20,13 +20,13 @@
         <thead>
             <tr>
                 <th>
-                    Reembolso {{bruno}}
+                    Descrição do Reembolso
                 </th>
                 <th>
                     Status
                 </th>
                 <th>
-                    Valor
+                    Valor (R$)
                 </th>
                 <th>
                     Categoria
@@ -37,13 +37,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Blue tree towers</td>
-                <td>positivo</td>
-                <td>R$ 500</td>
-                <td>Hospedagem</td>
-                <td>Gabriel</td>
+            <tr *ngFor="let reembolso of reembolsos" (click)="openReembolso()">
+                <td>{{reembolso.nome}}</td>
+                <td>{{reembolso.status}}</td>
+                <td>{{reembolso.valorSolicitado}}</td>
+                <td>{{reembolso.categoria}}</td>
+                <td>{{reembolso.emailEmpregado}}</td>
             </tr>
+
+
         </tbody>
 
     </div>
@@ -127,7 +129,7 @@
                     <div class="column is-8 is-center">
                         <div class="file has-name is-outlined is-link">
                             <label class="file-label">
-                <input formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
+                <input formControlName="uploadUrl" (change)="onFileChange($event)" class="file-input" type="file" name="uploadUrl">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>

@@ -10,6 +10,9 @@ import { catchError } from 'rxjs/operators';
 	providedIn: 'root'
 })
 export class EmpresaService extends DataService {
+	role: Observable<Object>;
+	userRole: string;
+
 
 	constructor(http: HttpClient) {
 		super(environment.urls.empresa.url, http);
@@ -24,9 +27,9 @@ export class EmpresaService extends DataService {
 		return this.http.post(environment.urls.usuario.cadastrarAdmin, admin, this.getHeaders());
 	}
 	public getRole() {
-		return this.http.get(environment.urls.usuario.role, this.getHeaders());
-	}
-	public getUser() {
+		this.role = this.http.get(environment.urls.usuario.role, this.getHeaders());
+
 
 	}
 }
+

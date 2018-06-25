@@ -59,6 +59,12 @@ export class EmpresaAddComponent implements OnInit {
 	get senha() {
 		return this.form.get('senha');
 	}
+	get email() {
+		return this.form.get('email');
+	}
+	get empresa() {
+		return this.form.get('empresa');
+	}
 
 
 }

@@ -7,8 +7,6 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { EmpresaService } from '../service/empresa.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment.prod';
-import { get } from 'http';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -23,6 +21,9 @@ export class DashboardUserComponent implements OnInit {
 	role: any;
 	faCalendarAlt = faCalendarAlt;
 	public reembolsos: any = [];
+	reembolsoSelecionado: any;
+	arquivoSelecionado: File = null;
+	fileSelected: string;
 
 
 	constructor(
@@ -33,8 +34,22 @@ export class DashboardUserComponent implements OnInit {
 		private cd: ChangeDetectorRef
 	) { }
 
+	toggleModal() {
+		this.isModalActive = !this.isModalActive;
+	}
+	addArquivoApi() {
+		return this.reembolsoService.addArquivo(this.arquivoSelecionado).subscribe((arquivoUrl: string) => {
+			this.fileSelected = arquivoUrl;
+		}, error => {
+			console.log(error);
+		});
+	}
 
-	ngOnInit() {
+	getRole() {
+		this.empresaService.getRole();
+	}
+
+	buscarReembolsoByUser() {
 		this.reembolsoService.buscarReembolsoByUser().subscribe(res => {
 			this.reembolsos = res;
 			console.log(this.reembolsos);
@@ -42,57 +57,70 @@ export class DashboardUserComponent implements OnInit {
 			console.log(error);
 		}
 		);
-		this.empresaService.getRole();
+	}
 
-
+	buscarCategorias() {
 		this.reembolsoService.buscarCategorias().subscribe(res => {
 			console.log(this.categorias);
 			this.categorias = res;
 			console.log(this.categorias);
 		});
 		console.log(this.categorias);
+	}
+
+	addReembolso(reem: ReembolsoDTO) {
+		this.reembolsoService.addReembolso(reem).subscribe((res) => {
+			console.log(reem);
+			this.toastr.success('Reembolso enviado para avaliação', 'Sucesso!');
+			this.toggleModal();
+		}, error => {
+			console.log(error);
+		});
+
+	}
+	ngOnInit() {
+
+
+		this.buscarCategorias();
+		this.buscarReembolsoByUser();
+		this.getRole();
 
 		this.formReembolso = new FormGroup({
 			'nome': new FormControl('', [Validators.minLength(4), Validators.required]),
 			'categoria': new FormControl('', Validators.required),
 			'valorSolicitado': new FormControl('', Validators.required),
 			'data': new FormControl('', Validators.required),
-			'uploadUrl': new FormControl(null, Validators.required)
+			'uploadUrl': new FormControl(null)
 		});
 	}
 
-	toggleModal() {
-		this.isModalActive = !this.isModalActive;
-	}
 	onSubmit(reembolso: ReembolsoDTO) {
-		this.reembolsoService.addReembolso(reembolso).subscribe((res) => {
-			console.log(reembolso);
-			this.toastr.success('Reembolso enviado para avaliação', 'Sucesso!');
+		this.addReembolso(reembolso);
+
+	}
+	openReembolsoEdit(reembolso: any) {
+		if (reembolso.status === 'Aguardando') {
+			this.reembolsoSelecionado = reembolso;
+			const path = '';
+			console.log('Upload url:' + this.reembolsoSelecionado.uploadUrl);
+			console.log('data' + this.reembolsoSelecionado.data);
+			console.log('Reembolso' + this.reembolsoSelecionado);
+			this.formReembolso.setValue({
+				nome: this.reembolsoSelecionado.nome,
+				categoria: this.reembolsoSelecionado.categoria,
+				data: this.reembolsoSelecionado.data,
+				valorSolicitado: this.reembolsoSelecionado.valorSolicitado,
+				uploadUrl: path
+			});
 			this.toggleModal();
 
-
-		}, error => {
-			console.log(error);
-		});
-
-	}
-	onFileChange(event) {
-		const reader = new FileReader();
-
-		if (event.target.files && event.target.files.length) {
-			const [file] = event.target.files;
-			reader.readAsDataURL(file);
-
-			reader.onload = () => {
-				this.formReembolso.patchValue({
-					uploadUrl: reader.result
-				});
-
-				// need to run CD since file load runs outside of zone
-				this.cd.markForCheck();
-			};
 		}
+
 	}
+
+
+
+
 	get nome() {
 		return this.formReembolso.get('nome');
 	}

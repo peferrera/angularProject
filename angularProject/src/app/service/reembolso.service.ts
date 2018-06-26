@@ -35,5 +35,14 @@ export class ReembolsoService extends DataService {
 		return this.http.get(environment.urls.reembolso.getReembolsoByUser, this.getHeaders());
 
 	}
+	addArquivo(file: File) {
+		const urlArquivo = environment.urls.arquivo.addArquivo;
+		const formData: FormData = new FormData();
+		formData.append('file', file, file.name);
+		return this.http.post(urlArquivo, formData, this.getHeaders());
+	}
+	buscarArquivo() {
+		return this.http.get(environment.urls.arquivo.buscarArquivo, this.getHeaders());
+	}
 
 }

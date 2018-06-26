@@ -32,6 +32,11 @@ export const environment = {
 			url: 'http://localhost:8086/categoria/',
 			buscarCategoria: 'http://localhost:8086/categoria/buscatodas',
 		},
+		arquivo: {
+			url: 'http://localhost:8086/arquivo/',
+			buscarArquivo: 'http://localhost:8086/arquivo/download',
+			addArquivo: 'http://localhost:8086/arquivo/upload',
+		},
 	}
 };
 

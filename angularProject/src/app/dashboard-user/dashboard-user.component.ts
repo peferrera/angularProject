@@ -34,8 +34,17 @@ export class DashboardUserComponent implements OnInit {
 		private cd: ChangeDetectorRef
 	) { }
 
-	toggleModal() {
+	toggleModal(formReembolso: any) {
 		this.isModalActive = !this.isModalActive;
+	}
+	cleanModal(form: any) {
+		form.reset();
+	}
+	closeModal(form: any) {
+		this.isModalActive = !this.isModalActive;
+		this.cleanModal(this.formReembolso);
+
+
 	}
 	addArquivoApi() {
 		return this.reembolsoService.addArquivo(this.arquivoSelecionado).subscribe((arquivoUrl: string) => {

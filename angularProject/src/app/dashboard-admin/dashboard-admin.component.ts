@@ -56,6 +56,20 @@ export class DashboardAdminComponent implements OnInit {
 		);
 
 	}
+	reprovarReembolso(idReembolso: number) {
+		const idReprovado = this.reembolsoSelecionado.id;
+
+		this.reembolsoService.reprovarReembolso(idReprovado).subscribe(novoReemb => {
+			this.reembolsoService.update(novoReemb);
+			this.buscarReembolsoByEmpresa();
+			this.closeModal(this.formReembolso);
+		}, error => {
+			console.log(error);
+		}
+		);
+
+	}
+
 	viewReembolsoModal(refund: any) {
 		this.reembolsoSelecionado = refund;
 		if (refund.status === 'Aguardando') {

@@ -154,7 +154,7 @@
         </section>
         <footer class="modal-card-foot is-grouped-right">
             <button class="button is-success" (click)="aprovarReembolso(reembolsoSelecionado, valorReembolsado)">Aprovar</button>
-            <button class="button is-danger">Reprovar</button>
+            <button class="button is-danger" (click)="reprovarReembolso(idreembolso)">Reprovar</button>
             <button class="button is-warning is-outlined" (click)="closeModal()">Cancelar</button>
         </footer>
     </div>

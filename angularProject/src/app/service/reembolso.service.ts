@@ -43,6 +43,10 @@ export class ReembolsoService extends DataService {
 		return this.http.post(environment.urls.reembolso.aprovaReembolso, reembolsoAprovado, this.getHeaders());
 	}
 
+	reprovarReembolso(reembolsoReprovado) {
+		return this.http.post(environment.urls.reembolso.reprovaReembolso, reembolsoReprovado, this.getHeaders());
+	}
+
 	addArquivo(file: File) {
 		const urlArquivo = environment.urls.arquivo.addArquivo;
 		const formData: FormData = new FormData();

@@ -43,7 +43,9 @@
             <tr *ngFor="let reembolso of reembolsos" (click)="viewReembolsoModal(reembolso)">
                 <td>{{reembolso.id}}</td>
                 <td>{{reembolso.nome}}</td>
-                <td>{{reembolso.status}}</td>
+                <td>
+                    <img src="../../assets/{{reembolso.status}}.svg" class="icon" title="{{reembolso.status}}">
+                </td>
                 <td>{{reembolso.valorSolicitado}}</td>
                 <td>{{reembolso.categoria}}</td>
                 <td>{{reembolso.emailEmpregado}}</td>

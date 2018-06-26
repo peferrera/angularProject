@@ -27,9 +27,7 @@ export class EmpresaService extends DataService {
 		return this.http.post(environment.urls.usuario.cadastrarAdmin, admin, this.getHeaders());
 	}
 	public getRole() {
-		this.role = this.http.get(environment.urls.usuario.role, this.getHeaders());
-
-
+		return this.http.get(environment.urls.usuario.role, this.getHeaders());
 	}
 }
 

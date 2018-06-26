@@ -19,6 +19,7 @@ import { faCoffee, faHome } from '@fortawesome/free-solid-svg-icons';
 export class LoginComponent implements OnInit {
 	form: FormGroup;
 	faHome = faHome;
+	userRole: string;
 
 	constructor(
 		private router: Router,
@@ -38,12 +39,22 @@ export class LoginComponent implements OnInit {
 			'senha': new FormControl('', Validators.required)
 		});
 	}
+	isAdmin() {
+		if (this.userRole === 'ROLE_USER') {
+			this.router.navigate(['/dashboardUser']);
+		}
+		if (this.userRole === 'ROLE_ADMIN') {
+			this.router.navigate(['/dashboardAdmin']);
+		} else {
+			this.router.navigate(['/dashboardUser']);
+		}
+	}
 
 	onSubmit(user: LoginDTO) {
 		this.authService.login(user).subscribe((token: TokenDTO) => {
 			localStorage.setItem(environment.tokenName, token.access_token);
 			const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-			this.router.navigate([returnUrl || '/dashboardAdmin']);
+			// this.isAdmin();
 		},
 			(e) => {
 				if (e instanceof BadCredentialsError) {

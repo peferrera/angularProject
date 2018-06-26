@@ -34,12 +34,14 @@
         <tbody>
             <tr class="is-info is-hoverable is-striped" *ngFor="let reembolso of reembolsos" (click)="openReembolsoEdit(reembolso)">
                 <td>{{reembolso.nome}}</td>
-                <td>{{reembolso.status}}</td>
+                <td>
+                    <img src="../../assets/{{reembolso.status}}.svg">
+                </td>
                 <td>{{reembolso.valorSolicitado}}</td>
                 <td>{{reembolso.categoria}}</td>
                 <td>{{reembolso.emailEmpregado}}</td>
                 <td>
-                    <a class="delete has-background-danger" (click)="excluirReembolso(reembolso.id)" title="excluir Reembolso">{{reembolso.id}}</a>
+                    <a class=" delete has-background-danger " (click)="excluirReembolso(reembolso.id) " title="excluir Reembolso ">{{reembolso.id}}</a>
                 </td>
             </tr>
 
@@ -49,52 +51,52 @@
     </div>
 </div>
 <!-- Button add reembolso-->
-<div class="">
-    <div class="buttons is-pulled-right">
-        <button class="button is-primary" aria-label="Adicionar Reembolso" (click)="toggleModal()">
-      <span class="icon">
-        <i class="fas fa-plus">+</i>
+<div class=" ">
+    <div class="buttons is-pulled-right ">
+        <button class="button is-primary " aria-label="Adicionar Reembolso " (click)="toggleModal() ">
+      <span class="icon ">
+        <i class="fas fa-plus ">+</i>
       </span>
     </button>
     </div>
 </div>
 <!--Modal add reembolso-->
-<div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
-    <div class="modal-background" (click)="toggleModal()"></div>
-    <div class="modal-card">
-        <header class="modal-card-head has-background-info">
-            <p class="modal-card-title has-text-white">Solicitar Reembolso</p>
+<div class="modal " [ngClass]="{ 'is-active' : isModalActive } ">
+    <div class="modal-background " (click)="toggleModal() "></div>
+    <div class="modal-card ">
+        <header class="modal-card-head has-background-info ">
+            <p class="modal-card-title has-text-white ">Solicitar Reembolso</p>
 
-            <button class="delete" aria-label="Fechar" (click)="toggleModal()"></button>
+            <button class="delete " aria-label="Fechar " (click)="toggleModal() "></button>
         </header>
-        <section class="modal-card-body">
-            <h4 class="subtitle is-5">Preencha as informações abaixo para solicitar reembolso</h4>
+        <section class="modal-card-body ">
+            <h4 class="subtitle is-5 ">Preencha as informações abaixo para solicitar reembolso</h4>
             <!--Form-->
-            <form class="example-class" [formGroup]="formReembolso" (ngSubmit)="onSubmit(formReembolso.value)">
-                <div class="columns">
-                    <div class="column">
-                        <div class="field">
-                            <label class="label is-small has-text-grey-dark has-text-weight-light">Nome do Reembolso</label>
-                            <div class="control">
-                                <input class="input is-shadowless is-info app-input" formControlName="nome" type="text" placeholder="Viagem a Curitiba etc...">
+            <form class="example-class " [formGroup]="formReembolso " (ngSubmit)="onSubmit(formReembolso.value) ">
+                <div class="columns ">
+                    <div class="column ">
+                        <div class="field ">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light ">Nome do Reembolso</label>
+                            <div class="control ">
+                                <input class="input is-shadowless is-info app-input " formControlName="nome " type="text " placeholder="Viagem a Curitiba etc... ">
                             </div>
-                            <div *ngIf="nome.touched && nome.invalid">
-                                <div *ngIf="nome.errors.required">
-                                    <p class="help is-danger">Nome do Reembolso é obrigatório</p>
+                            <div *ngIf="nome.touched && nome.invalid ">
+                                <div *ngIf="nome.errors.required ">
+                                    <p class="help is-danger ">Nome do Reembolso é obrigatório</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="columns">
-                    <div class="column is-6">
-                        <div class="control">
-                            <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
-                            <div class="select is-info">
-                                <select formControlName="categoria">
-                  <option disabled selected value="">Selecionar Categoria</option>
-                  <option *ngFor="let categoria of categorias" [value]="categoria.nome">
+                <div class="columns ">
+                    <div class="column is-6 ">
+                        <div class="control ">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light ">Categoria</label>
+                            <div class="select is-info ">
+                                <select formControlName="categoria ">
+                  <option disabled selected value=" ">Selecionar Categoria</option>
+                  <option *ngFor="let categoria of categorias " [value]="categoria.nome ">
                     {{categoria.nome}}
                   </option>
                 </select>
@@ -102,61 +104,61 @@
                         </div>
                     </div>
 
-                    <div class="column">
-                        <p class="control has-icons-left">
-                            <label class="label is-small has-text-grey-dark has-text-weight-light">Data</label>
-                            <input class="input is-shadowless is-info app-input" formControlName="data" type="date" placeholder="Data" required>
-                            <span class="icon is-small is-left">
-                <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                    <div class="column ">
+                        <p class="control has-icons-left ">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light ">Data</label>
+                            <input class="input is-shadowless is-info app-input " formControlName="data " type="date " placeholder="Data " required>
+                            <span class="icon is-small is-left ">
+                <fa-icon [icon]="faCalendarAlt "></fa-icon>
               </span>
                         </p>
                     </div>
                 </div>
 
-                <div class="columns">
-                    <div class="column is-4">
-                        <div class="field">
-                            <label class="label is-small has-text-grey-dark has-text-weight-light">Valor</label>
-                            <div class="control">
-                                <input class="input is-shadowless is-info app-input" formControlName="valorSolicitado" type="text" placeholder="valor" required>
+                <div class="columns ">
+                    <div class="column is-4 ">
+                        <div class="field ">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light ">Valor</label>
+                            <div class="control ">
+                                <input class="input is-shadowless is-info app-input " formControlName="valorSolicitado " type="text " placeholder="valor " required>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="column is-8 is-center">
-                        <div class="file has-name is-outlined is-link">
-                            <label class="file-label">
-                <input formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
+                    <div class="column is-8 is-center ">
+                        <div class="file has-name is-outlined is-link ">
+                            <label class="file-label ">
+                <input formControlName="uploadUrl " class="file-input " type="file " name="uploadUrl ">
+                <span class="file-cta ">
+                  <span class="file-icon ">
+                    <i class="fas fa-upload "></i>
                   </span>
-                  <span class="file-label">
+                  <span class="file-label ">
                     Adicionar Arquivo
                   </span>
                 </span>
-                <span class="file-name"> </span>
+                <span class="file-name "> </span>
               </label>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="field is-grouped is-grouped-right">
-                    <p class="control">
-                        <button type="submit" class="button is-primary">Solicitar</button>
+                <div class="field is-grouped is-grouped-right ">
+                    <p class="control ">
+                        <button type="submit " class="button is-primary ">Solicitar</button>
                     </p>
-                    <p class="control">
-                        <a class="button is-danger" (click)="closeModal()">Cancelar</a>
+                    <p class="control ">
+                        <a class="button is-danger " (click)="closeModal() ">Cancelar</a>
                     </p>
                 </div>
 
             </form>
         </section>
-        <!-- <footer class="modal-card-foot">
-			<button class="button is-primary">Salvar</button>
-			<button class="button is-danger" (click)="toggleModal()">Cancelar</button>
+        <!-- <footer class="modal-card-foot ">
+			<button class="button is-primary ">Salvar</button>
+			<button class="button is-danger " (click)="toggleModal() ">Cancelar</button>
 		</footer>-->
     </div>
 </div>

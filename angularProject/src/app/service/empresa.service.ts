@@ -29,5 +29,8 @@ export class EmpresaService extends DataService {
 	public getRole() {
 		return this.http.get(environment.urls.usuario.role, this.getHeaders());
 	}
+	public buscarUser() {
+		return this.http.get(environment.urls.usuario.role, this.getHeaders());
+	}
 }
 

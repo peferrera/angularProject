@@ -20,6 +20,7 @@ export const environment = {
 			recuperarSenha: 'http://localhost:8086/usuario/recuperasenha',
 			cadastrarAdmin: 'http://localhost:8086/usuario/cadastro/admineempresa',
 			cadastrarUser: 'http://localhost:8086/usuario/cadastro/porcodigo',
+			buscarUser: 'http://localhost:8086/usuario/dadosUsuario',
 			role: 'http://localhost:8086/usuario/role'
 
 		},

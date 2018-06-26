@@ -46,6 +46,9 @@ export class ReembolsoService extends DataService {
 	reprovarReembolso(reembolsoReprovado) {
 		return this.http.post(environment.urls.reembolso.reprovaReembolso, reembolsoReprovado, this.getHeaders());
 	}
+	excluirReembolso(id: number) {
+		return this.http.delete(environment.urls.reembolso.excluiReembolso, this.getHeaders());
+	}
 
 	addArquivo(file: File) {
 		const urlArquivo = environment.urls.arquivo.addArquivo;

@@ -85,6 +85,15 @@ export class DashboardUserComponent implements OnInit {
 		});
 
 	}
+	excluirReembolso(reembolsoSelecionado) {
+		console.log(reembolsoSelecionado.id);
+		this.reembolsoService.excluirReembolso(reembolsoSelecionado.id).subscribe(msg => {
+			this.toastr.success('Reembolso excluído com sucesso', 'Sucesso!');
+			this.buscarReembolsoByUser();
+		}, error => {
+			console.log(error);
+		});
+	}
 	ngOnInit() {
 
 
@@ -124,9 +133,6 @@ export class DashboardUserComponent implements OnInit {
 		}
 
 	}
-
-
-
 
 	get nome() {
 		return this.formReembolso.get('nome');

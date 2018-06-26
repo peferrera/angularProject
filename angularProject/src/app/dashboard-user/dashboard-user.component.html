@@ -26,6 +26,9 @@
                 <th>
                     Usuario
                 </th>
+                <th>
+                    Action
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +38,9 @@
                 <td>{{reembolso.valorSolicitado}}</td>
                 <td>{{reembolso.categoria}}</td>
                 <td>{{reembolso.emailEmpregado}}</td>
+                <td>
+                    <a class="delete has-background-danger" (click)="excluirReembolso(reembolso.id)" title="excluir Reembolso">{{reembolso.id}}</a>
+                </td>
             </tr>
 
 

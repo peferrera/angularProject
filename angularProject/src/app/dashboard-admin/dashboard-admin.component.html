@@ -20,6 +20,9 @@
         <thead>
             <tr>
                 <th>
+                    ID
+                </th>
+                <th>
                     Reembolso
                 </th>
                 <th>
@@ -38,11 +41,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let reembolso of reembolsos" (click)="viewReembolsoModal(reembolso)">
+                <td>{{reembolso.id}}</td>
                 <td>{{reembolso.nome}}</td>
                 <td>{{reembolso.status}}</td>
                 <td>{{reembolso.valorSolicitado}}</td>
                 <td>{{reembolso.categoria}}</td>
                 <td>{{reembolso.emailEmpregado}}</td>
+
             </tr>
         </tbody>
 
@@ -76,7 +81,7 @@
                         <div class="field">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Nome do Reembolso</label>
                             <div class="control">
-                                <input class="input is-shadowless is-info app-input" formControlName="nome" type="text" placeholder="Viagem a Curitiba etc...">
+                                <input disabled class="input is-shadowless is-info app-input" formControlName="nome" type="text" placeholder="Viagem a Curitiba etc...">
                             </div>
 
                         </div>
@@ -87,21 +92,16 @@
                     <div class="column is-6">
                         <div class="control">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Categoria</label>
-                            <div class="select is-info">
-                                <select formControlname="categoria">
-                  <option value="">Selecionar Categoria</option>
-                  <option *ngFor="let categoria of categorias" [value]="categoria">
-                    {{categoria.nome}}
-                  </option>
-                </select>
-                            </div>
+
+                            <input formControlName="categoria" disabled class="input is-shadowless is-info app-input" type="text" value="categoria">
+
                         </div>
                     </div>
 
                     <div class="column">
                         <p class="control has-icons-left">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Data</label>
-                            <input class="input is-shadowless is-info app-input" formControlName="data" type="date" placeholder="Data" required>
+                            <input disabled class="input is-shadowless is-info app-input" formControlName="data" type="date" placeholder="Data" required>
                             <span class="icon is-small is-left">
                 <i class="fas fas-envelope"></i>
               </span>
@@ -114,7 +114,7 @@
                         <div class="field">
                             <label class="label is-small has-text-grey-dark has-text-weight-light">Valor</label>
                             <div class="control">
-                                <input class="input is-shadowless is-info app-input" formControlName="valorSolicitado" type="text" placeholder="valor" required>
+                                <input disabled class="input is-shadowless is-info app-input" formControlName="valorSolicitado" type="text" placeholder="valor" required>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="column">
                         <div class="file has-name is-outlined is-link">
                             <label class="file-label">
-                <input formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
+                <input disabled formControlName="uploadUrl" class="file-input" type="file" name="uploadUrl">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fas fa-upload"></i>
@@ -139,12 +139,23 @@
                     </div>
                 </div>
 
+                <div class="columns">
+                    <div class="column is-4">
+                        <div class="field">
+                            <label class="label is-small has-text-grey-dark has-text-weight-light">Valor Reembolsado</label>
+                            <div class="control">
+                                <input class="input is-shadowless is-info app-input" formControlName="valorReembolsado" type="number" placeholder="valor">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </section>
         <footer class="modal-card-foot is-grouped-right">
-            <button class="button is-success">Aprovar</button>
+            <button class="button is-success" (click)="aprovarReembolso(reembolsoSelecionado, valorReembolsado)">Aprovar</button>
             <button class="button is-danger">Reprovar</button>
-            <button class="button is-warning is-outlined" (click)="toggleModal()">Cancelar</button>
+            <button class="button is-warning is-outlined" (click)="closeModal()">Cancelar</button>
         </footer>
     </div>
 </div>

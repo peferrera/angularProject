@@ -16,6 +16,7 @@ export class ReembolsoService extends DataService {
 	form: FormGroup;
 	reembolsos: any[];
 	empresaService: EmpresaService;
+	aprovado: any = [];
 
 	constructor(
 		http: HttpClient,
@@ -36,7 +37,10 @@ export class ReembolsoService extends DataService {
 	}
 	buscarReembolsoByEmpresa() {
 		return this.http.get(environment.urls.reembolso.getReembolsoByEmpresa, this.getHeaders());
+	}
+	aprovarReembolso(reembolsoAprovado) {
 
+		return this.http.post(environment.urls.reembolso.aprovaReembolso, reembolsoAprovado, this.getHeaders());
 	}
 
 	addArquivo(file: File) {

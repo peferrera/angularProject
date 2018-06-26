@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ReembolsoDTO } from '../dto/reembolso-dto';
 import { Observable } from 'rxjs';
 import { CategoriaDTO } from '../dto/categoria-dto';
+import { AprovarReembolsoDTO } from '../dto/aprovar-reembolso-dto';
 
 @Component({
 	selector: 'app-dashboard-admin',
@@ -18,12 +19,7 @@ export class DashboardAdminComponent implements OnInit {
 	public categorias: any = [];
 	public reembolsos: any = [];
 	reembolsoSelecionado: any;
-	nome: string;
-	valor: number;
-	data: string;
-	categoria: string;
-	emailEmpregado: string;
-
+	reembolsoAprovado: AprovarReembolsoDTO;
 
 
 	constructor(
@@ -41,6 +37,25 @@ export class DashboardAdminComponent implements OnInit {
 		this.isModalActive = !this.isModalActive;
 		this.cleanModal(this.formReembolso);
 	}
+	aprovarReembolso(idreembolso: AprovarReembolsoDTO) {
+		const idAprovado = this.reembolsoSelecionado.id;
+		this.reembolsoSelecionado.valorReembolsado = this.formReembolso.get('valorReembolsado');
+		const valorReembolsado = this.reembolsoSelecionado.valorReembolsado.value;
+
+		console.log('data ' + idAprovado, this.reembolsoSelecionado.valorReembolsado.value);
+		this.reembolsoAprovado = { id: idAprovado, valorReembolsado: valorReembolsado };
+		console.log(this.reembolsoAprovado);
+
+		this.reembolsoService.aprovarReembolso(this.reembolsoAprovado).subscribe(novoReemb => {
+			this.reembolsoService.update(novoReemb);
+			this.buscarReembolsoByEmpresa();
+			this.closeModal(this.formReembolso);
+		}, error => {
+			console.log(error);
+		}
+		);
+
+	}
 	viewReembolsoModal(refund: any) {
 		this.reembolsoSelecionado = refund;
 		if (refund.status === 'Aguardando') {
@@ -49,13 +64,17 @@ export class DashboardAdminComponent implements OnInit {
 			console.log('Upload url:' + this.reembolsoSelecionado.uploadUrl);
 			console.log('data' + this.reembolsoSelecionado.data);
 			console.log('Reembolso' + this.reembolsoSelecionado);
+			console.log('categoria' + this.reembolsoSelecionado.categoria);
 			this.formReembolso.setValue({
 				nome: this.reembolsoSelecionado.nome,
 				categoria: this.reembolsoSelecionado.categoria,
 				data: this.reembolsoSelecionado.data,
 				valorSolicitado: this.reembolsoSelecionado.valorSolicitado,
-				uploadUrl: path
+				uploadUrl: path,
+				valorReembolsado: 0
+
 			});
+
 			this.toggleModal();
 
 		}
@@ -78,6 +97,7 @@ export class DashboardAdminComponent implements OnInit {
 		);
 	}
 
+
 	ngOnInit() {
 		this.buscarCategorias();
 		this.buscarReembolsoByEmpresa();
@@ -87,7 +107,8 @@ export class DashboardAdminComponent implements OnInit {
 			'categoria': new FormControl('', Validators.required),
 			'valorSolicitado': new FormControl('', Validators.required),
 			'data': new FormControl('', Validators.required),
-			'uploadUrl': new FormControl(null, Validators.required)
+			'uploadUrl': new FormControl(null, Validators.required),
+			'valorReembolsado': new FormControl('')
 
 		});
 

@@ -33,8 +33,12 @@ export class ReembolsoService extends DataService {
 	}
 	buscarReembolsoByUser() {
 		return this.http.get(environment.urls.reembolso.getReembolsoByUser, this.getHeaders());
+	}
+	buscarReembolsoByEmpresa() {
+		return this.http.get(environment.urls.reembolso.getReembolsoByEmpresa, this.getHeaders());
 
 	}
+
 	addArquivo(file: File) {
 		const urlArquivo = environment.urls.arquivo.addArquivo;
 		const formData: FormData = new FormData();

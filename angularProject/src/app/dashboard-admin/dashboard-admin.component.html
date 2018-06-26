@@ -20,7 +20,7 @@
         <thead>
             <tr>
                 <th>
-                    Reembolso {{bruno}}
+                    Reembolso
                 </th>
                 <th>
                     Status
@@ -37,12 +37,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Almoço didge</td>
-                <td>positivo</td>
-                <td>R$ 320</td>
-                <td>Alimentação</td>
-                <td>Pedro Ferreira</td>
+            <tr *ngFor="let reembolso of reembolsos" (click)="viewReembolsoModal(reembolso)">
+                <td>{{reembolso.nome}}</td>
+                <td>{{reembolso.status}}</td>
+                <td>{{reembolso.valorSolicitado}}</td>
+                <td>{{reembolso.categoria}}</td>
+                <td>{{reembolso.emailEmpregado}}</td>
             </tr>
         </tbody>
 
@@ -63,14 +63,14 @@
     <div class="modal-background" (click)="toggleModal()"></div>
     <div class="modal-card">
         <header class="modal-card-head has-background-info">
-            <p class="modal-card-title has-text-white">Solicitar Reembolso</p>
+            <p class="modal-card-title has-text-white">Revisar Reembolso</p>
 
-            <button class="delete" aria-label="Fechar" (click)="toggleModal()"></button>
+            <button class="delete" aria-label="Fechar" (click)="closeModal()"></button>
         </header>
         <section class="modal-card-body">
-            <h4 class="subtitle is-5">Preencha as informações abaixo para solicitar reembolso</h4>
+            <h4 class="subtitle is-5">Confira abaixo as informações do reembolso solicitado</h4>
             <!--Form-->
-            <form class="example-class" [formGroup]="formReembolso" (ngSubmit)="onSubmit(formReembolso.value)">
+            <form class="example-class" [formGroup]="formReembolso">
                 <div class="columns">
                     <div class="column">
                         <div class="field">
@@ -78,11 +78,7 @@
                             <div class="control">
                                 <input class="input is-shadowless is-info app-input" formControlName="nome" type="text" placeholder="Viagem a Curitiba etc...">
                             </div>
-                            <div *ngIf="nome.touched && nome.invalid">
-                                <div *ngIf="nome.errors.required">
-                                    <p class="help is-danger">Nome do Reembolso é obrigatório</p>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -143,20 +139,12 @@
                     </div>
                 </div>
 
-                <div class="field is-grouped is-grouped-right">
-                    <p class="control">
-                        <button type="submit" class="button is-primary">Solicitar</button>
-                    </p>
-                    <p class="control">
-                        <a class="button is-danger" (click)="toggleModal()">Cancelar</a>
-                    </p>
-                </div>
-
             </form>
         </section>
-        <!-- <footer class="modal-card-foot">
-			<button class="button is-primary">Salvar</button>
-			<button class="button is-danger" (click)="toggleModal()">Cancelar</button>
-		</footer>-->
+        <footer class="modal-card-foot is-grouped-right">
+            <button class="button is-success">Aprovar</button>
+            <button class="button is-danger">Reprovar</button>
+            <button class="button is-warning is-outlined" (click)="toggleModal()">Cancelar</button>
+        </footer>
     </div>
 </div>

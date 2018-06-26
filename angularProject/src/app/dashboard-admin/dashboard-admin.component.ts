@@ -15,8 +15,15 @@ import { CategoriaDTO } from '../dto/categoria-dto';
 export class DashboardAdminComponent implements OnInit {
 	isModalActive = false;
 	formReembolso: FormGroup;
-
 	public categorias: any = [];
+	public reembolsos: any = [];
+	reembolsoSelecionado: any;
+	nome: string;
+	valor: number;
+	data: string;
+	categoria: string;
+	emailEmpregado: string;
+
 
 
 	constructor(
@@ -24,13 +31,56 @@ export class DashboardAdminComponent implements OnInit {
 		private reembolsoService: ReembolsoService,
 	) { }
 
-	ngOnInit() {
+	toggleModal() {
+		this.isModalActive = !this.isModalActive;
+	}
+	cleanModal(form: any) {
+		form.reset();
+	}
+	closeModal(form: any) {
+		this.isModalActive = !this.isModalActive;
+		this.cleanModal(this.formReembolso);
+	}
+	viewReembolsoModal(refund: any) {
+		this.reembolsoSelecionado = refund;
+		if (refund.status === 'Aguardando') {
+			this.reembolsoSelecionado = refund;
+			const path = '';
+			console.log('Upload url:' + this.reembolsoSelecionado.uploadUrl);
+			console.log('data' + this.reembolsoSelecionado.data);
+			console.log('Reembolso' + this.reembolsoSelecionado);
+			this.formReembolso.setValue({
+				nome: this.reembolsoSelecionado.nome,
+				categoria: this.reembolsoSelecionado.categoria,
+				data: this.reembolsoSelecionado.data,
+				valorSolicitado: this.reembolsoSelecionado.valorSolicitado,
+				uploadUrl: path
+			});
+			this.toggleModal();
+
+		}
+	}
+	buscarCategorias() {
 		this.reembolsoService.buscarCategorias().subscribe(res => {
 			console.log(this.categorias);
 			this.categorias = res;
 			console.log(this.categorias);
 		});
 		console.log(this.categorias);
+	}
+	buscarReembolsoByEmpresa() {
+		this.reembolsoService.buscarReembolsoByEmpresa().subscribe(res => {
+			this.reembolsos = res;
+			console.log(this.reembolsos);
+		}, error => {
+			console.log(error);
+		}
+		);
+	}
+
+	ngOnInit() {
+		this.buscarCategorias();
+		this.buscarReembolsoByEmpresa();
 
 		this.formReembolso = new FormGroup({
 			'nome': new FormControl('', [Validators.minLength(4), Validators.required]),
@@ -43,9 +93,6 @@ export class DashboardAdminComponent implements OnInit {
 
 	}
 
-	toggleModal() {
-		this.isModalActive = !this.isModalActive;
-	}
 	onSubmit(reembolso: ReembolsoDTO) {
 		this.reembolsoService.addReembolso(reembolso).subscribe((res) => {
 			console.log(reembolso);
@@ -54,21 +101,6 @@ export class DashboardAdminComponent implements OnInit {
 		});
 
 
-	}
-	get nome() {
-		return this.formReembolso.get('nome');
-	}
-	get categoria() {
-		return this.formReembolso.get('categoria');
-	}
-	get valorSolicitado() {
-		return this.formReembolso.get('ValorSolicitado');
-	}
-	get uploadUrl() {
-		return this.formReembolso.get('uploadUrl');
-	}
-	get data() {
-		return this.formReembolso.get('data');
 	}
 }
 

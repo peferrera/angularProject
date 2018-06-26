@@ -27,6 +27,9 @@ export const environment = {
 			url: 'http://localhost:8086/reembolso/',
 			addReembolso: 'http://localhost:8086/reembolso/adiciona',
 			getReembolsoByUser: 'http://localhost:8086/reembolso/buscaPorEmpregado',
+			getReembolsoByEmpresa: 'http://localhost:8086/reembolso/buscaPorEmpresa',
+			aprovaReembolso: 'http://localhost:8086/reembolso/aprova',
+			reprovaReembolso: 'http://localhost:8086/reembolso/reprova',
 		},
 		categoria: {
 			url: 'http://localhost:8086/categoria/',

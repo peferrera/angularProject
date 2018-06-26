@@ -34,7 +34,7 @@ export class DashboardUserComponent implements OnInit {
 		private cd: ChangeDetectorRef
 	) { }
 
-	toggleModal(formReembolso: any) {
+	toggleModal() {
 		this.isModalActive = !this.isModalActive;
 	}
 	cleanModal(form: any) {
@@ -43,8 +43,6 @@ export class DashboardUserComponent implements OnInit {
 	closeModal(form: any) {
 		this.isModalActive = !this.isModalActive;
 		this.cleanModal(this.formReembolso);
-
-
 	}
 	addArquivoApi() {
 		return this.reembolsoService.addArquivo(this.arquivoSelecionado).subscribe((arquivoUrl: string) => {
@@ -81,7 +79,7 @@ export class DashboardUserComponent implements OnInit {
 		this.reembolsoService.addReembolso(reem).subscribe((res) => {
 			console.log(reem);
 			this.toastr.success('Reembolso enviado para avaliação', 'Sucesso!');
-			this.toggleModal();
+			this.closeModal(this.formReembolso);
 		}, error => {
 			console.log(error);
 		});
